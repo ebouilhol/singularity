@@ -17,11 +17,13 @@ Enter the Shell of this instance :
 singularity shell --nv instance://instance_name
 
 Create a conda environment :
+``` shell
 conda create -n env_name python=3.6
 conda activate env_name (or conda source env_name)
 conda install keras
 conda install tensorflow-pgu
 Install any other libs you need then run your scripts python myscript.py
+```
 
 To get off the instance shell just type "exit"
 
