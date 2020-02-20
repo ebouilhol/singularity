@@ -11,10 +11,10 @@ In this folder copy from /mnt/cbib/baracuda/singularity_img/tensorflow:
 - tf_keras.def
 
 Create a singularity Instance :
-singularity instance start --nv tf_keras.simg instance_name
+singularity instance start --nv tf_keras.simg instance_name_GPU_Number
 
 Enter the Shell of this instance :
-singularity shell --nv instance://instance_name
+singularity shell --nv instance://instance_name_GPU_Number
 
 Create a conda environment :
 ``` shell
@@ -33,3 +33,11 @@ singularity exec --nv myscript.py
 The --nv option is mandatory for deep learning 
 
 you can use the command nvidia-smi to see if the scripts are actually using the GPUs
+
+Specify GPU : 
+Specify the GPUs you are using in your scripts with : 
+
+```
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+```
