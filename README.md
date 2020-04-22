@@ -41,3 +41,47 @@ Specify the GPUs you are using in your scripts with :
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 ```
+
+
+UPDATE:
+​
+## Screen 
+​
+To run jobs without keeping a terminal openned, we use screen. 
+​
+```bash
+screen -S session_name # This session_name will help you to remember what's running inside the screen instance and retrieve it easily
+```
+To quit without closing the session just do : `CTRL+a` then `d`
+​
+Now that we have created a session, we need to create a script to run our job on singularity : 
+​
+`script.sh` :
+```bash
+#!/bin/bash
+source activate env_name
+cd /absolute/path/to/your/DL/job
+python job.py
+python job.py > output.log # use this one if you want to keep all the log 
+```
+​
+Go back into the screen session and run the script : 
+```bash 
+screen -r session_name
+singularity exec --nv instance://instance_name bash script.sh
+```
+​
+Usefull screen cmd : 
+​
+- screen -ls : list all screen instance (only yours)
+- screen -S name : create a session named name
+- screen -r name : rattach to session name
+​
+Inside screen : 
+​
+- CTRL+a d : detach session
+​
+​
+More information at : https://linuxize.com/post/how-to-use-linux-screen/
+
+
